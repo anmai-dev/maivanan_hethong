@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Thông tin — Webebook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --purple-1: #6b21a8;
+            --purple-2: #9f5be9;
+            --muted: #9aa0a6;
+            --bg-light: linear-gradient(135deg, #fff 0%, #f8f6ff 50%, #fff6fb 100%);
+            --card-shadow: 0 12px 40px rgba(16, 24, 40, 0.08);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background:
+                radial-gradient(2000px 600px at 10% 10%, rgba(159, 91, 233, 0.08), transparent 15%),
+                radial-gradient(1800px 700px at 95% 90%, rgba(107, 33, 168, 0.06), transparent 10%),
+                var(--bg-light);
+            color: #111;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            background: linear-gradient(90deg, var(--purple-1), var(--purple-2));
+            color: #fff;
+            padding: 14px 28px;
+            box-shadow: 0 3px 12px rgba(16, 24, 40, 0.12);
+            position: sticky;
+            top: 0;
+            z-index: 30
+        }
+
+        .topbar .container {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .logo {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-weight: 700;
+            font-size: 20px
+        }
+
+        .logo .mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .search {
+            flex: 1;
+            display: flex;
+            justify-content: center
+        }
+
+        .search form {
+            width: 100%;
+            max-width: 720px;
+            display: flex;
+            gap: 12px
+        }
+
+        .search input {
+            flex: 1;
+            padding: 12px 18px;
+            border-radius: 28px;
+            border: 0;
+            outline: none;
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+            font-size: 14px
+        }
+
+        .search button {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+            border: 0;
+            padding: 8px 16px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: 600
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.18)
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: var(--purple-1);
+            font-weight: 700;
+            border-radius: 8px;
+            padding: 8px 12px
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 28px auto;
+            padding: 24px
+        }
+
+        .page-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 22px
+        }
+
+        .page-head h1 {
+            font-size: 28px;
+            margin: 0;
+            font-weight: 800;
+            color: #111
+        }
+
+        .page-head p {
+            margin: 0;
+            color: var(--muted)
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 28px;
+            align-items: start
+        }
+
+        .profile-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(16, 24, 40, 0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 112px;
+            height: 112px;
+            border-radius: 999px;
+            overflow: hidden;
+            background: linear-gradient(180deg, #fff, #f4f4f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .name {
+            font-weight: 800;
+            font-size: 18px
+        }
+
+        .username {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            justify-content: space-between;
+            margin-top: 4px
+        }
+
+        .stat {
+            flex: 1;
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 10px;
+            font-weight: 700;
+            color: var(--purple-1);
+            font-size: 13px
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            width: 100%
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 0;
+            cursor: pointer;
+            font-weight: 700
+        }
+
+        .btn-edit {
+            background: linear-gradient(90deg, var(--purple-1), var(--purple-2));
+            color: #fff;
+            width: 100%
+        }
+
+        .btn-logout {
+            background: transparent;
+            border: 1px solid rgba(16, 24, 40, 0.06);
+            color: #333;
+            width: 100%
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(16, 24, 40, 0.04)
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 8px;
+            font-weight: 600
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(16, 24, 40, 0.06);
+            font-size: 14px;
+            background: #fff
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical
+        }
+
+        .form-row {
+            margin-bottom: 14px
+        }
+
+        .save-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-top: 6px
+        }
+
+        .btn-save {
+            background: var(--purple-1);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 0;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(16, 24, 40, 0.06);
+            padding: 10px 12px;
+            border-radius: 10px
+        }
+
+        .orders {
+            margin-top: 18px
+        }
+
+        .orders h3 {
+            margin: 0 0 12px 0;
+            font-size: 16px
+        }
+
+        .order-list {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 12px
+        }
+
+        .order {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 12px;
+            border-radius: 10px;
+            background: #fbfbfd;
+            border: 1px solid rgba(16, 24, 40, 0.03)
+        }
+
+        .order .meta {
+            flex: 1
+        }
+
+        .order .meta .title {
+            font-weight: 700
+        }
+
+        .order .meta .sub {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .order .price {
+            font-weight: 800;
+            color: var(--purple-1)
+        }
+
+        @media (max-width:900px) {
+            .layout {
+                grid-template-columns: 1fr
+            }
+
+            .profile-stats {
+                flex-direction: row
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container">
+            <div class="logo">
+                <div class="mark">W</div>
+                <div>Webebook</div>
+            </div>
+
+            <div class="search" aria-hidden="false">
+                <form onsubmit="return false">
+                    <input type="text" placeholder="Tìm kiếm sách, tác giả..." />
+                    <button type="submit">Tìm</button>
+                </form>
+            </div>
+
+            <nav class="nav" aria-label="Top navigation">
+                <a href="#">Trang Chủ</a>
+                <a href="#">Danh Sách Sách</a>
+                <a class="btn-outline" href="#" style="color:#fff">Đăng Nhập</a>
+                <a class="btn-primary" href="#">Đăng Ký</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="page-head">
+            <div>
+                <h1>Thông Tin Tài Khoản</h1>
+                <p>Quản lý hồ sơ, địa chỉ và đơn hàng của bạn</p>
+            </div>
+            <div>
+                <button class="btn btn-secondary" onclick="alert('Tải xuống bản sao hồ sơ')">Xuất hồ sơ</button>
+            </div>
+        </div>
+
+        <div class="layout">
+            <aside class="profile-card">
+                <div class="avatar" id="avatarWrap">
+                    <img src="https://i.pravatar.cc/300" alt="avatar" id="avatarImg">
+                </div>
+                <div class="name">mai văn an </div>
+                <div class="username">@anmai2004</div>
+
+                <div class="profile-stats">
+                    <div class="stat">3 Đơn</div>
+                    <div class="stat">+84 839592579</div>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="btn btn-edit" onclick="document.getElementById('name').focus()">Chỉnh sửa</button>
+                    <button class="btn btn-logout" onclick="alert('Đã đăng xuất')">Đăng xuất</button>
+                </div>
+            </aside>
+
+            <section>
+                <div class="card">
+                    <h2 style="margin:0 0 12px 0">Chi tiết cá nhân</h2>
+
+                    <div class="form-row form-grid">
+                        <div>
+                            <label for="name">Họ & tên</label>
+                            <input id="name" type="text" value="Nguyễn Văn A">
+                        </div>
+                        <div>
+                            <label for="usernameField">Tên đăng nhập</label>
+                            <input id="usernameField" type="text" value="nguyenvana">
+                        </div>
+                    </div>
+
+                    <div class="form-row form-grid">
+                        <div>
+                            <label for="email">Email</label>
+                            <input id="email" type="email" value="a@gmail.com">
+                        </div>
+                        <div>
+                            <label for="phone">Số điện thoại</label>
+                            <input id="phone" type="text" value="+84 12345678">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="address">Địa chỉ</label>
+                        <textarea id="address">Số 1, Đường A, Quận B, TP. HCM</textarea>
+                    </div>
+
+                    <div class="save-row">
+                        <button class="btn-save" onclick="saveProfile()">Lưu thay đổi</button>
+                        <button class="btn-secondary" onclick="resetForm()">Hủy</button>
+                    </div>
+
+                    <div class="orders">
+                        <h3>Đơn hàng gần đây</h3>
+                        <div class="order-list">
+                            <div class="order">
+                                <img src="https://picsum.photos/seed/o1/80/110" alt=""
+                                    style="width:56px;height:80px;object-fit:cover;border-radius:6px">
+                                <div class="meta">
+                                    <div class="title">đường xưa mây trắng</div>
+                                    <div class="sub">Mã: #B12345 • 12 Nov 2025</div>
+                                </div>
+                                <div class="price">327,000 VNĐ</div>
+                            </div>
+
+                            <div class="order">
+                                <img src="https://picsum.photos/seed/o2/80/110" alt=""
+                                    style="width:56px;height:80px;object-fit:cover;border-radius:6px">
+                                <div class="meta">
+                                    <div class="title">Không diệt không sinh</div>
+                                    <div class="sub">Mã: #B12312 • 01 Oct 2025</div>
+                                </div>
+                                <div class="price">499,000 VNĐ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        function saveProfile() {
+            // placeholder: thay bằng gọi API thực tế
+            alert('Thông tin đã được lưu (demo).');
+        }
+        function resetForm() {
+            // đơn giản reload demo
+            location.reload();
+        }
+    </script>
+</body>
+
+</html>
